@@ -14,7 +14,8 @@ import { Routes, RouterModule } from '../../node_modules/@angular/router';
 
 const routeConfig: Routes = [
   {path:'',component:HomeComponent},
-  {path:'product/:prodTitle', component:ProductDetailComponent}
+  //use productId instead of product name
+  {path:'product/:productId', component:ProductDetailComponent}
 ]
 
 @NgModule({
