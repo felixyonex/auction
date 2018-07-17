@@ -1,0 +1,6 @@
+<p>
+  <!--*ngFor是表示循环遍历-->
+  <!--[class.glyphicon-star-empty]="star"是指span标签是否出现glyphicon-star-empty的类名是由star属性决定的-->
+  <span *ngFor="let star of stars" class="glyphicon glyphicon-star" [class.glyphicon-star-empty]="star"></span>
+  <span>{{rating}}stars</span>
+</p>
