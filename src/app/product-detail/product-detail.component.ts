@@ -16,6 +16,14 @@ export class ProductDetailComponent implements OnInit {
   //Store the info we get from the Service
   comments: Comment[];
   //ActivatedRoute 保存当前路由信息的对象
+
+  //用于保存星级和评价内容
+  newRating:number = 5;
+  newComment:string = "";
+
+  //评论部分是否可见, 默认隐藏.
+  isCommentHidden = true;
+
   constructor(private routeInfo: ActivatedRoute,
   private productService: ProductService) { }
 
@@ -27,6 +35,22 @@ export class ProductDetailComponent implements OnInit {
     // this.productTitle = this.routeInfo.snapshot.params["prodTitle"]
 
     this.comments = this.productService.getCommentsForProductId(productId);
+  }
+
+  addComment () {
+    let comment = new Comment(0, this.product.id, new Date().toISOString(), "someone", this.newRating, this.newComment);
+
+    this.comments.unshift(comment);
+
+  //reduce方法, 遍历, (回调函数, 初始值)
+    let sum = this.comments.reduce((sum, comment)=> sum + comment.rating, 0)
+
+    this.product.rating = sum/this.comments.length;
+
+  //重置表单
+    this.newComment = null;
+    this.newRating = 5;
+    this.isCommentHidden = true;
   }
 
 }

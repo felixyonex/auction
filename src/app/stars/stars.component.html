@@ -1,6 +1,7 @@
 <p>
   <!--*ngFor是表示循环遍历-->
   <!--[class.glyphicon-star-empty]="star"是指span标签是否出现glyphicon-star-empty的类名是由star属性决定的-->
-  <span *ngFor="let star of stars" class="glyphicon glyphicon-star" [class.glyphicon-star-empty]="star"></span>
-  <span>{{rating}}stars</span>
+  <!-- 将循环下标传递进去 -->
+  <span *ngFor="let star of stars; let i = index" class="glyphicon glyphicon-star" [class.glyphicon-star-empty]="star" (click)="clickStar(i)"></span>
+  <span>{{rating | number:'1.0-2'}}stars</span>
 </p>
