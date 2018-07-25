@@ -31,10 +31,18 @@ export class ProductDetailComponent implements OnInit {
     let productId:number = this.routeInfo.snapshot.params["productId"]
 
     //从参数快照中获得商品的ID
-    this.product = this.productService.getProduct(productId);
+    // this.product = this.productService.getProduct(productId);
     // this.productTitle = this.routeInfo.snapshot.params["prodTitle"]
 
-    this.comments = this.productService.getCommentsForProductId(productId);
+  //对于product, 因为模板上有太多绑定product, 因此只是在ngOnInit中手动订阅这个流
+    this.productService.getProduct(productId).subscribe(
+      // 当流里面发射一个新的数据的时候它的处理方法, 把流的值赋给本地变量product
+      product => this.product = product
+    );
+
+    this.productService.getCommentsForProductId(productId).subscribe(
+      comments => this.comments = comments
+    );
   }
 
   addComment () {

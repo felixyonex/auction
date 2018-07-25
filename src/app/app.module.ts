@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -35,8 +36,8 @@ const routeConfig: Routes = [
   ],
   imports: [
     BrowserModule,
-    // FormsModule,
-    // HttpModule,
+    FormsModule,
+    HttpModule,
     //在主模块中需要用forRoot注入路由；别的情况用forChild注入
     RouterModule.forRoot(routeConfig),
     ReactiveFormsModule,

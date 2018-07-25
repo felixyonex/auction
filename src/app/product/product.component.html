@@ -1,12 +1,6 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div class="form-group">
-      <input class="form-control" placeholder="enter product name" [formControl]="titleFilter">
-    </div>
-  </div>
-</div>
 <!--ngFor:Angular会循环products数组，根据元素数量生成相应的代码-->
-<div *ngFor="let product of products | filter:'title':keyword" class="col-md-4 col-sm-4 col-lg-4">
+<!-- 更改为异步管道 -->
+<div *ngFor="let product of products | async" class="col-md-4 col-sm-4 col-lg-4">
   <div class="thumbnail">
     <img [src]="imgUrl">
     <div class="caption">

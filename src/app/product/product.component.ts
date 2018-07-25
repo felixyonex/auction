@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product, ProductService } from '../shared/product.service';
 import { FormControl } from '../../../node_modules/@angular/forms';
 import "../../../node_modules/rxjs";
+import { Observable } from '../../../node_modules/rxjs';
 // import "../../../node_modules/rxjs/add/operator/debounceTime";
 
 
@@ -12,22 +13,22 @@ import "../../../node_modules/rxjs";
 })
 export class ProductComponent implements OnInit {
 
-  //
-  private products: Array<Product>;
+  //改造成流
+  private products: Observable<Product[]>;
 
-  private keyword:string;
+  // private keyword:string;
 
-  private titleFilter:FormControl = new FormControl;
+  // private titleFilter:FormControl = new FormControl;
 
   private imgUrl = 'http://placehold.it/320x150';
 
   constructor(private productService: ProductService) { 
 
-    //这里使用debouceTime总是报错
-    this.titleFilter.valueChanges
-    .subscribe(
-      value => this.keyword = value
-    )
+    // //这里使用debouceTime总是报错
+    // this.titleFilter.valueChanges
+    // .subscribe(
+    //   value => this.keyword = value
+    // )
 
   }
 
