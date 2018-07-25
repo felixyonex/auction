@@ -29,6 +29,10 @@ export class ProductService {
     new Comment(4, 2, "2018-05-04 09:22:20", "Nick", 2, "Just so so")
   ];
   constructor() {}
+
+  getAllCategories():string[]{
+    return ["electronics","hardware","book","toy","food"]
+  }
   getProducts():Product[] {
     return this.products;
   }

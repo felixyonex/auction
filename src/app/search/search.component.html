@@ -1,15 +1,25 @@
-<form action="" name="searchForm" role="form">
-  <div class="form-group">
+<form [formGroup]="formModel" (ngSubmit)="onSearch()" novalidate>
+  <!-- 当title字段的minlength校验有错误时,会添加一个类名;has-error是BS的一个样式 -->
+  <div class="form-group" [class.has-error]="formModel.hasError('minlength','title')">
     <label for="productTitle">Product name</label>
-    <input type="text" id="productTitle" placeholder="Product name" class="form-control">
+    <!-- 用formControlName指令把它跟后台title属性绑定到一起 -->
+    <input formControlName="title" type="text" id="productTitle" placeholder="Product name" class="form-control">
+    <span class="help-block" [class.hidden]="!formModel.hasError('minlength','title')">Please at enter at least 3 characters</span>
   </div>
-  <div class="form-group">
-    <label for="productPrice">Product name</label>
-    <input type="text" id="productPrice" placeholder="Product price" class="form-control">
+  <div class="form-group" [class.has-error]="formModel.hasError('positiveNumber','price')">
+    <label for="productPrice">Product price</label>
+    <input formControlName="price" type="text" id="productPrice" placeholder="Product price" class="form-control">
   </div>
+    <span class="help-block" [class.hidden]="!formModel.hasError('positiveNumber','price')">Please enter a valid price</span>
+
   <div class="form-group">
-    <label for="productCategory">Product name</label>
-    <select id="productCategory" class="form-control"></select>
+    <label for="productCategory">Product categories</label>
+    <select formControlName="category" id="productCategory" class="form-control">
+      <!-- category默认值是-1, 这里设置显示为默认分类 -->
+      <option value="-1">All categories</option>
+      <!-- 循环出来的category变量会绑定到option属性上,并同步显示出来 -->
+      <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+    </select>
   </div>
   <div class="form-group">
     <button type="submit" class="btn btn-primary btn-block">Search</button>
