@@ -35,6 +35,12 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
 
     this.products = this.productService.getProducts();
+
+//订阅的是搜索事件这个流
+    this.productService.searchEvent.subscribe(
+      //拿到的数据就是查询参数, 然后用查询参数去调用搜索方法, 把搜索方法返回的流赋值给this.product属性, 然后在前台async管道显示
+      params => this.products = this.productService.search(params)
+    )
   }
 
 }

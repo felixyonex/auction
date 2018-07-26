@@ -40,8 +40,9 @@ export class SearchComponent implements OnInit {
 
   onSearch() {
     if(this.formModel.valid){
-      console.log(this.formModel.valid);
-      
+      console.log(this.formModel.value);
+      //发射的是ProductSearchParams类声明的对象
+      this.productService.searchEvent.emit(this.formModel.value);
     }
   }
 
