@@ -14,6 +14,12 @@
   </div>
 </div>
 
+<!-- new -->
+<div class="thumbnail">
+  <button class="btn btn-default btn-lg" [class.active]="isWatched" (click)="watchProduct()">{{isWatched?'Unsubscribe':'Subscribe'}}</button>
+  <label class="label-success"> Latest bid: ${{currentBid | number:'.2-2'}}</label>
+</div>
+
 <div class="well">
   <div>
     <button class="btn btn-success" (click)="isCommentHidden=!isCommentHidden">Comment</button>

@@ -14,6 +14,9 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { HomeComponent } from './home/home.component';
 import { Routes, RouterModule } from '../../node_modules/@angular/router';
 import { FilterPipe } from './pipe/filter.pipe';
+import { ProductService } from './shared/product.service';
+import { WebSocketService } from './shared/web-socket.service';
+import { LocationStrategy, HashLocationStrategy } from '../../node_modules/@angular/common';
 
 const routeConfig: Routes = [
   {path:'',component:HomeComponent},
@@ -44,7 +47,8 @@ const routeConfig: Routes = [
     FormsModule
     
   ],
-  providers: [],
+  providers: [ProductService, WebSocketService,
+  {provide:LocationStrategy, useClass:HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
